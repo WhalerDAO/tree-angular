@@ -1,9 +1,9 @@
-<div class="row">
-  <div class="col">
-    🌲Tree
+<div class="row mt-3">
+  <div class="col" align="center">
+    <h3>🌲Tree</h3>
   </div>
 
-  <div class="col">
+  <div class="col" align="center">
     <ul ngbNav [activeId]="route.url | async" class="nav justify-content-center">
       <li [ngbNavItem]="link.routerLink" *ngFor="let link of links">
         <a ngbNavLink [routerLink]="link.routerLink">{{ link.title }}</a>
@@ -11,13 +11,13 @@
     </ul>
   </div>
 
-  <div class="col">
+  <div class="col" align="center">
     <button type="button" class="btn btn-outline-primary" (click)="connectWallet()">
       <div *ngIf="wallet.connected()">
-        🟢 {{wallet.userAddress().substring(0, 14)}}
+        {{wallet.userAddress().substring(0, 14)}}
       </div>
       <div *ngIf="!wallet.connected()">
-        🔴 Connect Wallet
+        Connect Wallet
       </div>
     </button>
   </div>
