@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="col">
+    🌲Tree
+  </div>
+
+  <div class="col">
+    <ul ngbNav [activeId]="route.url | async" class="nav justify-content-center">
+      <li [ngbNavItem]="link.routerLink" *ngFor="let link of links">
+        <a ngbNavLink [routerLink]="link.routerLink">{{ link.title }}</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="col">
+    <button type="button" class="btn btn-outline-primary" (click)="connectWallet()">
+      <div *ngIf="wallet.connected()">
+        🟢 {{wallet.userAddress().substring(0, 14)}}
+      </div>
+      <div *ngIf="!wallet.connected()">
+        🔴 Connect Wallet
+      </div>
+    </button>
+  </div>
+</div>
