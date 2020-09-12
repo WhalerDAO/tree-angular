@@ -10,6 +10,7 @@ import { HeaderComponent } from './header/header.component';
 import { ForestListComponent } from './forest-list/forest-list.component';
 import { ForestComponent } from './forest/forest.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     RebaseComponent,
     HeaderComponent,
     ForestListComponent,
-    ForestComponent
+    ForestComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

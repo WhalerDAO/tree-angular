@@ -1,1 +1,42 @@
-<p>home works!</p>
+<div class="container mt-5 text-center justify-content-center">
+  <div class="row mb-3">
+    <div class="col">
+      <div class="row justify-content-center">
+        <h1 class="display-1">🌲</h1>
+      </div>
+      <div class="row justify-content-center">
+        <h1 class="display-4">It's a good day to plant TREEs</h1>
+      </div>
+      <div class="row justify-content-center">
+        <h2 class="text-muted">Let's fund charities & public goods</h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-3 justify-content-center">
+    <div class="col">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title">Your TREE balance</h5>
+          <h1 class="card-text">🌲 {{treeBalance.toFormat(4)}}</h1>
+          <hr>
+          <span class="card-text float-left"><small class="text-muted">Pending harvest</small></span>
+          <span class="card-text float-right"><small class="text-muted">{{pendingHarvest.toFormat(4)}} TREE</small></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title">Total TREE supply</h5>
+          <h1 class="card-text">{{treeSupply.toFormat(4)}}</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-3 justify-content-center">
+    <button type="button" class="btn btn-lg btn-outline-success" routerLink="forests">🥾 Hike the forests</button>
+  </div>
+</div>

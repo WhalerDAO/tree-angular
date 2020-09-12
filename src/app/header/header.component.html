@@ -6,13 +6,13 @@
   <div class="col" align="center">
     <ul ngbNav [activeId]="route.url | async" class="nav justify-content-center">
       <li [ngbNavItem]="link.routerLink" *ngFor="let link of links">
-        <a ngbNavLink [routerLink]="link.routerLink">{{ link.title }}</a>
+        <a class="text-success" ngbNavLink [routerLink]="link.routerLink">{{ link.title }}</a>
       </li>
     </ul>
   </div>
 
   <div class="col" align="center">
-    <button type="button" class="btn btn-outline-primary" (click)="connectWallet()">
+    <button type="button" class="btn btn-outline-success" (click)="connectWallet()">
       <div *ngIf="wallet.connected()">
         {{wallet.userAddress().substring(0, 14)}}
       </div>
