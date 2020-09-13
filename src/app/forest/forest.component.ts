@@ -47,12 +47,16 @@ export class ForestComponent implements OnInit {
     this.availableStakeTokenBalance = new BigNumber(0);
   }
 
-  openStakeModal(content) {
-    this.modalService.open(content, { ariaLabelledBy: 'stake-modal-title', centered: true })
+  openModal(modal) {
+    this.modalService.open(modal, { centered: true })
   }
 
   setMaxStakeAmount(input) {
     input.value = this.availableStakeTokenBalance.toString();
+  }
+
+  setMaxWithdrawAmount(input) {
+    input.value = this.stakedTokenBalance.toString();
   }
 
   harvest() {
@@ -69,6 +73,23 @@ export class ForestComponent implements OnInit {
     const stakeAmount = new BigNumber(amount).times(stakeTokenPrecision).integerValue().toString();
     const func = this.contract.getForest(this.forestID).methods.stake(stakeAmount);
     this.wallet.sendTxWithToken(func, stakeToken, forestAddress, stakeAmount, 5e5, () => { }, () => {
+      this.loadData();
+    }, () => { });
+  }
+
+  withdrawAllAndHarvest() {
+    const func = this.contract.getForest(this.forestID).methods.exit();
+    this.wallet.sendTx(func, () => { }, () => {
+      this.loadData();
+    }, () => { });
+  }
+
+  async withdraw(amount) {
+    const stakeToken = this.contract.getForestStakeToken(this.forestID);
+    const stakeTokenPrecision = Math.pow(10, +(await stakeToken.methods.decimals().call()));
+    const stakeAmount = new BigNumber(amount).times(stakeTokenPrecision).integerValue().toString();
+    const func = this.contract.getForest(this.forestID).methods.withdraw(stakeAmount);
+    this.wallet.sendTx(func, () => { }, () => {
       this.loadData();
     }, () => { });
   }

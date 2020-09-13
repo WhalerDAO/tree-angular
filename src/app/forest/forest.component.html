@@ -33,7 +33,13 @@
           <h5 class="card-title">{{constants.FORESTS[forestID].tokenName}} tokens staked</h5>
           <h1 class="card-text">{{stakedTokenBalance.toFormat(4)}}</h1>
           <hr>
-          <button type="button" class="btn btn-outline-success" (click)="openStakeModal(stakeModal)">Stake</button>
+          <button type="button" class="btn btn-outline-success" (click)="openModal(stakeModal)">Stake</button>
+          <ng-container *ngIf="stakedTokenBalance.gt(0)">
+            <button type="button" class="btn btn-outline-success ml-3"
+              (click)="openModal(withdrawModal)">Withdraw</button>
+            <button type="button" class="btn btn-outline-success ml-3" (click)="withdrawAllAndHarvest()">Withdraw All &
+              Harvest</button>
+          </ng-container>
         </div>
       </div>
     </div>
@@ -55,12 +61,42 @@
           <div class="input-group">
             <input id="stakeAmountInput" class="form-control" placeholder="0.0000" #stakeAmountInput>
           </div>
-          <button type="button" class="btn btn-link" (click)="setMaxStakeAmount(stakeAmountInput)"><small>Available: {{availableStakeTokenBalance.toFormat()}}</small></button>
+          <button type="button" class="btn btn-link" (click)="setMaxStakeAmount(stakeAmountInput)"><small>Available:
+              {{availableStakeTokenBalance.toFormat()}}</small></button>
         </div>
       </form>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-block btn-outline-success" ngbAutofocus (click)="stake(stakeAmountInput.value); modal.close();">Stake</button>
+      <button type="button" class="btn btn-block btn-outline-success" ngbAutofocus
+        (click)="stake(stakeAmountInput.value); modal.close();">Stake</button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #withdrawModal let-modal>
+  <div class="dark">
+    <div class="modal-header">
+      <h4 class="modal-title" id="withdraw-modal-title">Withdraw your stake</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="form-group">
+          <label for="withdrawAmountInput">Amount</label>
+          <div class="input-group">
+            <input id="withdrawAmountInput" class="form-control" placeholder="0.0000" #withdrawAmountInput>
+          </div>
+          <button type="button" class="btn btn-link"
+            (click)="setMaxWithdrawAmount(withdrawAmountInput)"><small>Available:
+              {{stakedTokenBalance.toFormat()}}</small></button>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-block btn-outline-success" ngbAutofocus
+        (click)="withdraw(withdrawAmountInput.value); modal.close();">Withdraw</button>
     </div>
   </div>
 </ng-template>
