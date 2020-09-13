@@ -33,6 +33,13 @@ export class HomeComponent implements OnInit {
   async loadData() {
     this.treeBalance = new BigNumber(await this.contract.TREE.methods.balanceOf(this.wallet.userAddress).call()).div(this.constants.TREE_PRECISION);
     this.treeSupply = new BigNumber(await this.contract.TREE.methods.totalSupply().call()).div(this.constants.TREE_PRECISION);
+
+    let pendingHarvest = new BigNumber(0);
+    await Promise.all(this.constants.FOREST_IDS.map(async (forestID) => {
+      const forestPendingHarvest = new BigNumber(await this.contract.getForest(forestID).methods.earned(this.wallet.userAddress).call()).div(this.constants.TREE_PRECISION);
+      pendingHarvest = pendingHarvest.plus(forestPendingHarvest);
+    }));
+    this.pendingHarvest = pendingHarvest;
   }
 
   resetData() {

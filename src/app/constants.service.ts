@@ -51,5 +51,10 @@ export class ConstantsService {
       emoji: "🍄",
       tokenName: "Compound COMP"
     }
+  };
+
+
+  public get FOREST_IDS(): string[] {
+    return Object.keys(this.FORESTS);
   }
 }
