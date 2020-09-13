@@ -1,12 +1,12 @@
 <div class="row mt-3">
   <div class="col" align="center">
-    <h3>🌲Tree</h3>
+    <img class="planter" src='../../assets/farmer.png'> <span class="title">Tree Planter</span>
   </div>
 
-  <div class="col" align="center">
+  <div class="col top-links" align="center">
     <ul ngbNav [activeId]="route.url | async" class="nav justify-content-center">
       <li [ngbNavItem]="link.routerLink" *ngFor="let link of links">
-        <a class="text-success" ngbNavLink [routerLink]="link.routerLink">{{ link.title }}</a>
+        <span class="top-link-item"><a class="text-success" ngbNavLink [routerLink]="link.routerLink">{{ link.title }}</a></span>
       </li>
     </ul>
   </div>
