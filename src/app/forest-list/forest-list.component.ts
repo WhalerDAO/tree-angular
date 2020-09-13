@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ConstantsService } from '../constants.service';
 
 @Component({
   selector: 'app-forest-list',
@@ -6,8 +7,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./forest-list.component.css']
 })
 export class ForestListComponent implements OnInit {
+  FORESTS = [
+    [
+      "LP",
+      "yYFI",
+      "yDAI"
+    ],
+    [
+      "yWETH",
+      "yaLINK",
+      "SNX"
+    ],
+    [
+      "LEND",
+      "ANT",
+      "COMP"
+    ]
+  ];
 
-  constructor() { }
+  constructor(public constants: ConstantsService) { }
 
   ngOnInit(): void {
   }

@@ -1,1 +1,32 @@
-<p>forest-list works!</p>
+<div class="container mt-5 text-center justify-content-center">
+  <div class="row mb-3">
+    <div class="col">
+      <div class="row justify-content-center">
+        <h1 class="display-1">🌲</h1>
+      </div>
+      <div class="row justify-content-center">
+        <h1 class="display-4 main-text">Into the wild</h1>
+      </div>
+      <div class="row justify-content-center">
+        <h2 class="text-muted">Stake tokens to grow your TREEs</h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <div class="row mb-3" *ngFor="let forestRow of FORESTS">
+        <div class="col" *ngFor="let forestID of forestRow">
+          <div class="card h-100">
+            <div class="card-body">
+              <h1 class="card-title">{{constants.FORESTS[forestID].emoji}}</h1>
+              <h5 class="card-title">{{constants.FORESTS[forestID].name}} <span class="badge badge-success" *ngIf="forestID === 'LP'">2x rewards</span></h5>
+              <hr>
+              <button type="button" class="btn btn-outline-success" routerLink="{{forestID}}">Enter</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
