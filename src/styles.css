@@ -2,3 +2,28 @@
 body {
   background-color: rgb(8, 40, 46);
 }
+
+.main-text {
+  font-weight: bold;
+  margin-left: 0.3rem;
+  margin-right: 0.3rem;
+}
+
+hr {
+  background: white;
+}
+
+.col {
+  color: white;
+}
+
+.card {
+  background-color:  rgb(1, 6, 7);
+  border-radius: 1rem;
+  padding-bottom: 2rem;
+}
+
+.planter {
+  width: 3rem;
+  height: auto;
+}

@@ -1,28 +1,4 @@
-.col {
-  color: white;
-}
-.card {
-  background-color:  rgb(1, 6, 7);
-  border-radius: 1rem;
-  padding-bottom: 2rem;
-}
-
-.main-text {
-  font-weight: bold;
-  margin-left: 0.3rem;
-  margin-right: 0.3rem;
-}
-
-.planter {
-  width: 3rem;
-  height: auto;
-}
-
 .dark {
-  background-color:  rgb(1, 6, 7);
+  background-color: rgb(1, 6, 7);
   color: white;
-}
-
-hr {
-  background: white;
 }
