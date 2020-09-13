@@ -13,10 +13,10 @@
 
   <div class="col" align="center">
     <button type="button" class="btn btn-outline-success" (click)="connectWallet()">
-      <div *ngIf="wallet.connected()">
-        {{wallet.userAddress().substring(0, 14)}}
+      <div *ngIf="wallet.connected">
+        {{wallet.userAddress.substring(0, 14)}}
       </div>
-      <div *ngIf="!wallet.connected()">
+      <div *ngIf="!wallet.connected">
         Connect Wallet
       </div>
     </button>

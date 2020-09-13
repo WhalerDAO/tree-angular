@@ -21,6 +21,6 @@ export class HeaderComponent implements OnInit {
   }
 
   connectWallet() {
-    this.wallet.connect(null, null, false);
+    this.wallet.connect(() => {}, () => {}, false);
   }
 }

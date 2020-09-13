@@ -10,6 +10,6 @@ export class AppComponent {
   title = 'tree-angular';
 
   constructor(public wallet: WalletService) {
-    wallet.connect(null, null, true);
+    wallet.connect(() => {}, () => {}, true);
   }
 }
