@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { WalletService } from './wallet.service';
-import { Wallet } from 'bnc-onboard/dist/src/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -9,9 +8,20 @@ export class ContractService {
 
   constructor(public wallet: WalletService) { }
 
-  
   public get TREE() {
-    return this.getNamedContract('TREE')
+    return this.getNamedContract('TREE');
+  }
+
+  public get TREEReserve() {
+    return this.getNamedContract('TREEReserve');
+  }
+
+  public get TREERebaser() {
+    return this.getNamedContract('TREERebaser');
+  }
+
+  public get ITREEOracle() {
+    return this.getNamedContract('ITREEOracle');
   }
 
   getForest(forestID: string) {
@@ -31,7 +41,7 @@ export class ContractService {
     return new this.wallet.web3.eth.Contract(abi, address);
   }
 
-  private getNamedContract(name: string) {
+  getNamedContract(name: string) {
     const abi = require(`../assets/abi/${name}.json`);
     const address = require('../assets/addresses.json')[name];
     return new this.wallet.web3.eth.Contract(abi, address);

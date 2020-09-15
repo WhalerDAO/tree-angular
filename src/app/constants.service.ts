@@ -1,10 +1,16 @@
 import { Injectable } from '@angular/core';
+import BigNumber from 'bignumber.js';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ConstantsService {
   TREE_PRECISION = 1e18;
+  TREE_PRECISION_STR = new BigNumber(this.TREE_PRECISION).toFixed();
+  YUSD_PRECISION = 1e18;
+  REBASE_THRESHOLD = 1.05; // 5% threshold
+  REBASE_INTERVAL = 12; // 12 hours
+  ORACLE_UPDATE_INTERVAL = 12; // 12 hours
   FORESTS = {
     LP: {
       name: "TREE-yUSD LP Garden",
