@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import BigNumber from 'bignumber.js';
 import { WalletService } from '../wallet.service';
 import { ContractService } from '../contract.service';
@@ -9,7 +9,7 @@ import { ConstantsService } from '../constants.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit, OnDestroy {
+export class HomeComponent implements OnInit {
   treeBalance: BigNumber;
   treeSupply: BigNumber;
   pendingHarvest: BigNumber;
@@ -28,11 +28,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.wallet.errorEvent.subscribe(() => {
       this.resetData();
     });
-  }
-
-  ngOnDestroy() {
-    this.wallet.connectedEvent.unsubscribe();
-    this.wallet.errorEvent.unsubscribe();
   }
 
   async loadData() {

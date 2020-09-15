@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ConstantsService } from '../constants.service';
 import { ActivatedRoute } from '@angular/router';
 import BigNumber from 'bignumber.js';
@@ -11,7 +11,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './forest.component.html',
   styleUrls: ['./forest.component.css']
 })
-export class ForestComponent implements OnInit, OnDestroy {
+export class ForestComponent implements OnInit {
   forestID: string;
   earnedTreeBalance: BigNumber;
   stakedTokenBalance: BigNumber;
@@ -32,11 +32,6 @@ export class ForestComponent implements OnInit, OnDestroy {
     this.wallet.errorEvent.subscribe(() => {
       this.resetData();
     });
-  }
-
-  ngOnDestroy() {
-    this.wallet.connectedEvent.unsubscribe();
-    this.wallet.errorEvent.unsubscribe();
   }
 
   async loadData() {

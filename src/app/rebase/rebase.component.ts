@@ -34,8 +34,6 @@ export class RebaseComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.wallet.connectedEvent.unsubscribe();
-    this.wallet.errorEvent.unsubscribe();
     this.lastRebaseTimer.stop();
   }
 
