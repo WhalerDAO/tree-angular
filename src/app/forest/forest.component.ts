@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ConstantsService } from '../constants.service';
 import { ActivatedRoute } from '@angular/router';
 import BigNumber from 'bignumber.js';
@@ -11,7 +11,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './forest.component.html',
   styleUrls: ['./forest.component.css']
 })
-export class ForestComponent implements OnInit {
+export class ForestComponent implements OnInit, OnDestroy {
   forestID: string;
   earnedTreeBalance: BigNumber;
   stakedTokenBalance: BigNumber;
@@ -34,11 +34,19 @@ export class ForestComponent implements OnInit {
     });
   }
 
+  ngOnDestroy() {
+    this.wallet.connectedEvent.unsubscribe();
+    this.wallet.errorEvent.unsubscribe();
+  }
+
   async loadData() {
-    this.earnedTreeBalance = new BigNumber(await this.contract.getForest(this.forestID).methods.earned(this.wallet.userAddress).call()).div(this.constants.TREE_PRECISION);
-    const stakeTokenPrecision = Math.pow(10, +(await this.contract.getForestStakeToken(this.forestID).methods.decimals().call()));
-    this.stakedTokenBalance = new BigNumber(await this.contract.getForest(this.forestID).methods.balanceOf(this.wallet.userAddress).call()).div(stakeTokenPrecision);
-    this.availableStakeTokenBalance = new BigNumber(await this.contract.getForestStakeToken(this.forestID).methods.balanceOf(this.wallet.userAddress).call()).div(stakeTokenPrecision);
+    const forest = this.contract.getForest(this.forestID);
+    const forestStakeToken = this.contract.getForestStakeToken(this.forestID);
+
+    this.earnedTreeBalance = new BigNumber(await forest.methods.earned(this.wallet.userAddress).call()).div(this.constants.TREE_PRECISION);
+    const stakeTokenPrecision = Math.pow(10, +(await forestStakeToken.methods.decimals().call()));
+    this.stakedTokenBalance = new BigNumber(await forest.methods.balanceOf(this.wallet.userAddress).call()).div(stakeTokenPrecision);
+    this.availableStakeTokenBalance = new BigNumber(await forestStakeToken.methods.balanceOf(this.wallet.userAddress).call()).div(stakeTokenPrecision);
   }
 
   resetData() {

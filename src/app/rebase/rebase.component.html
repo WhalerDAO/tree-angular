@@ -1,1 +1,84 @@
-<p>rebase works!</p>
+<div class="container mt-5 text-center justify-content-center">
+  <div class="row mb-3">
+    <div class="col">
+      <div class="row justify-content-center">
+        <h1 class="display-1">🌱</h1>
+      </div>
+      <div class="row justify-content-center">
+        <h1 class="display-4 main-text">Positive Rebasing</h1>
+      </div>
+      <div class="row justify-content-center">
+        <h2 class="text-muted">High price? More TREEs!</h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title">Time since last rebase</h5>
+          <h1 class="card-text">
+            <ng-container *ngIf="timeSinceLastRebaseReady()">
+              ✔️
+            </ng-container>
+            <ng-container *ngIf="!timeSinceLastRebaseReady()">
+              ❌
+            </ng-container>
+            <ng-container *ngIf="wallet.connected && lastRebaseTimestamp > 0">
+              {{lastRebaseTimer.hours}}:{{lastRebaseTimer.minutes}}:{{lastRebaseTimer.seconds}}
+            </ng-container>
+            <ng-container *ngIf="!(wallet.connected && lastRebaseTimestamp > 0)">
+              --:--:--
+            </ng-container>
+          </h1>
+          <small>{{constants.REBASE_INTERVAL}} hours required</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title">Average TREE price</h5>
+          <h1 class="card-text">
+            <ng-container *ngIf="oraclePriceReady()">
+              ✔️
+            </ng-container>
+            <ng-container *ngIf="!oraclePriceReady()">
+              ❌
+            </ng-container>
+            <ng-container *ngIf="wallet.connected && oracleTREEPrice.gt(0)">
+              {{oracleTREEPrice.toFormat(4)}} yUSD
+            </ng-container>
+            <ng-container *ngIf="!(wallet.connected && oracleTREEPrice.gt(0))">
+              -.---- yUSD
+            </ng-container>
+          </h1>
+          <small>>= {{constants.REBASE_THRESHOLD}} yUSD required</small>
+          <br>
+          <small>Next update in: {{nextOracleUpdateTimer.hours}}:{{nextOracleUpdateTimer.minutes}}:{{nextOracleUpdateTimer.seconds}}</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title">Is rebase ready?</h5>
+          <h1 class="card-text">
+            <ng-container *ngIf="timeSinceLastRebaseReady() && oraclePriceReady()">
+              Yes
+            </ng-container>
+            <ng-container *ngIf="!(timeSinceLastRebaseReady() && oraclePriceReady())">
+              No
+            </ng-container>
+          </h1>
+          <ng-container *ngIf="timeSinceLastRebaseReady() && oraclePriceReady()">
+            <button type="button" class="btn btn-outline-success" (click)="rebase()">Rebase</button>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

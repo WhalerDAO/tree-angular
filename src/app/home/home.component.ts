@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import BigNumber from 'bignumber.js';
 import { WalletService } from '../wallet.service';
 import { ContractService } from '../contract.service';
@@ -9,7 +9,7 @@ import { ConstantsService } from '../constants.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
   treeBalance: BigNumber;
   treeSupply: BigNumber;
   pendingHarvest: BigNumber;
@@ -30,9 +30,16 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  ngOnDestroy() {
+    this.wallet.connectedEvent.unsubscribe();
+    this.wallet.errorEvent.unsubscribe();
+  }
+
   async loadData() {
-    this.treeBalance = new BigNumber(await this.contract.TREE.methods.balanceOf(this.wallet.userAddress).call()).div(this.constants.TREE_PRECISION);
-    this.treeSupply = new BigNumber(await this.contract.TREE.methods.totalSupply().call()).div(this.constants.TREE_PRECISION);
+    const tree = this.contract.TREE;
+
+    this.treeBalance = new BigNumber(await tree.methods.balanceOf(this.wallet.userAddress).call()).div(this.constants.TREE_PRECISION);
+    this.treeSupply = new BigNumber(await tree.methods.totalSupply().call()).div(this.constants.TREE_PRECISION);
 
     let pendingHarvest = new BigNumber(0);
     await Promise.all(this.constants.FOREST_IDS.map(async (forestID) => {
