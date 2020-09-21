@@ -61,8 +61,8 @@
           <div class="input-group">
             <input id="stakeAmountInput" class="form-control" placeholder="0.0000" #stakeAmountInput>
           </div>
-          <button type="button" class="btn btn-link" (click)="setMaxStakeAmount(stakeAmountInput)"><small>Available:
-              {{availableStakeTokenBalance.toFormat()}}</small></button>
+          <button type="button" class="btn btn-link available-btn" (click)="setMaxStakeAmount(stakeAmountInput)">Available:
+              {{availableStakeTokenBalance.toFormat()}}</button>
         </div>
       </form>
     </div>
@@ -88,9 +88,9 @@
           <div class="input-group">
             <input id="withdrawAmountInput" class="form-control" placeholder="0.0000" #withdrawAmountInput>
           </div>
-          <button type="button" class="btn btn-link"
-            (click)="setMaxWithdrawAmount(withdrawAmountInput)"><small>Available:
-              {{stakedTokenBalance.toFormat()}}</small></button>
+          <button type="button" class="btn btn-link available-btn"
+            (click)="setMaxWithdrawAmount(withdrawAmountInput)">Available:
+              {{stakedTokenBalance.toFormat()}}</button>
         </div>
       </form>
     </div>

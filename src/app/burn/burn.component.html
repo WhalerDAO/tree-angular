@@ -22,17 +22,17 @@
       <div class="card-body text-left">
         <div class="row">
           <div class="col">
-            <h5 class="card-title">Burn TREE</h5>
+            <h3 class="card-title">Burn TREE</h3>
             <form>
               <div class="form-group">
                 <label for="burnAmountInput">Amount</label>
                 <input type="number" class="form-control" id="burnAmountInput" name="burnAmountInput" min="0.0"
                   [(ngModel)]="burnAmount">
-                <button type="button" class="btn btn-link" (click)="maxBurnAmount()"><small>Available:
-                    {{treeBalance.toFormat()}}</small></button>
+                <button type="button" class="btn btn-link available-btn" (click)="maxBurnAmount()">Available:
+                    {{treeBalance.toFormat()}}</button>
               </div>
               <hr>
-              <button type="submit" class="btn btn-outline-success btn-block" (click)="burn()">🔥Burn🔥</button>
+              <button type="submit" class="btn btn-danger btn-block burn-btn" (click)="burn()">🔥Burn🔥</button>
             </form>
           </div>
 
@@ -109,7 +109,7 @@
   <div class="row mb-3 justify-content-center">
     <div class="card h-100">
       <div class="card-body text-left">
-        <h5 class="card-title">Returns Calculator</h5>
+        <h3 class="card-title">Returns Calculator</h3>
         <p class="card-text">If you wait for other people to burn first, how much returns will you get?</p>
         <form>
           <div class="form-group">
@@ -166,7 +166,7 @@
               </div>
             </div>
           </li>
-          <li class="list-group-item">
+          <li class="list-group-item disclaimer">
             <small>Note: This calculator assumes the TREEs are burnt at the same time (i.e. by one account using one
               transaction).</small>
             <br>

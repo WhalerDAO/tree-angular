@@ -1,0 +1,11 @@
+.disclaimer {
+  color: rgb(206, 206, 206);
+}
+
+.burn-btn {
+  font-weight: bold !important;
+  background-color: #a11c29;
+}
+.burn-btn:hover {
+  background-color: #5a0911;
+}
