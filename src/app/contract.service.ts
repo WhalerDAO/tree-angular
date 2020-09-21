@@ -46,4 +46,10 @@ export class ContractService {
     const address = require('../assets/addresses.json')[name];
     return new this.wallet.web3.eth.Contract(abi, address);
   }
+
+  getNamedToken(name: string) {
+    const abi = require(`../assets/abi/ERC20.json`);
+    const address = require('../assets/addresses.json')[name];
+    return new this.wallet.web3.eth.Contract(abi, address);
+  }
 }

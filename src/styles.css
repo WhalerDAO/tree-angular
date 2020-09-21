@@ -19,10 +19,16 @@ hr {
 
 .card {
   background-color:  rgb(1, 6, 7);
+  color: white;
   border-radius: 1rem;
 }
 
 .planter {
   width: 7rem;
   height: auto;
+}
+
+.list-group-item {
+  background-color:  rgb(1, 6, 7);
+  color: white;
 }
