@@ -35,6 +35,7 @@ export class RebaseComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.lastRebaseTimer.stop();
+    this.nextOracleUpdateTimer.stop();
   }
 
   async loadData() {

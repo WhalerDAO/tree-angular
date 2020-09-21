@@ -1,1 +1,180 @@
-<p>burn works!</p>
+<div class="container mt-5 text-center justify-content-center">
+  <div class="row mb-3">
+    <div class="col">
+      <div class="row justify-content-center">
+        <h1 class="display-1">🔥</h1>
+      </div>
+      <div class="row justify-content-center">
+        <h1 class="display-4 main-text">TREE burning</h1>
+      </div>
+      <div class="row justify-content-center">
+        <h2 class="text-muted">Burn TREE to get yUSD from the reserve</h2>
+      </div>
+      <div class="row justify-content-center">
+        <p class="text-muted">Beware! The ashes of your TREEs will nourish the remaining TREEs, making them more
+          valuable</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-3 justify-content-center">
+    <div class="card h-100">
+      <div class="card-body text-left">
+        <div class="row">
+          <div class="col">
+            <h5 class="card-title">Burn TREE</h5>
+            <form>
+              <div class="form-group">
+                <label for="burnAmountInput">Amount</label>
+                <input type="number" class="form-control" id="burnAmountInput" name="burnAmountInput" min="0.0"
+                  [(ngModel)]="burnAmount">
+                <button type="button" class="btn btn-link" (click)="maxBurnAmount()"><small>Available:
+                    {{treeBalance.toFormat()}}</small></button>
+              </div>
+              <hr>
+              <button type="submit" class="btn btn-outline-success btn-block" (click)="burn()">🔥Burn🔥</button>
+            </form>
+          </div>
+
+          <div class="col">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <div class="row">
+                  <div class="col">
+                    <small class="float-left text-left">You will burn</small>
+                  </div>
+                  <div class="col">
+                    <small class="float-right text-right">{{toFormat(burnAmount)}} TREE</small>
+                  </div>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="row">
+                  <div class="col">
+                    <small class="float-left text-left">TREE total supply</small>
+                  </div>
+                  <div class="col">
+                    <small class="float-right text-right">{{treeSupply.toFormat(4)}} TREE</small>
+                  </div>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="row">
+                  <div class="col">
+                    <small class="float-left text-left">You will burn</small>
+                  </div>
+                  <div class="col">
+                    <small class="float-right text-right">{{calcBurnPercentage()}}% of the total supply</small>
+                  </div>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="row">
+                  <div class="col">
+                    <small class="float-left text-left">You will get</small>
+                  </div>
+                  <div class="col">
+                    <small class="float-right text-right">{{calcBurnPercentage()}}% x {{calcBurnPercentage()}}% =
+                      {{calcReceivePercentage()}}% of the reserve</small>
+                  </div>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="row">
+                  <div class="col">
+                    <small class="float-left text-left">Reserve balance</small>
+                  </div>
+                  <div class="col">
+                    <small class="float-right text-right">{{reserveBalance.toFormat(4)}} yUSD</small>
+                  </div>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="row">
+                  <div class="col">
+                    <h4 class="float-left text-left">You will receive</h4>
+                  </div>
+                  <div class="col">
+                    <h4 class="float-right text-right">{{calcReceiveAmount()}} yUSD</h4>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-3 justify-content-center">
+    <div class="card h-100">
+      <div class="card-body text-left">
+        <h5 class="card-title">Returns Calculator</h5>
+        <p class="card-text">If you wait for other people to burn first, how much returns will you get?</p>
+        <form>
+          <div class="form-group">
+            <label for="otherBurnPercentInput">If someone burnt</label>
+            <div class="input-group mb-3">
+              <input type="number" class="form-control" id="otherBurnPercentInput" name="otherBurnPercentInput"
+                min="0.0" max="100.0" [(ngModel)]="otherBurnPercent">
+              <div class="input-group-append">
+                <span class="input-group-text">%</span>
+              </div>
+            </div>
+            <label for="otherBurnPercentInput">of all TREEs</label>
+          </div>
+        </form>
+
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col">
+                <small class="float-left text-left">Your TREEs will be</small>
+              </div>
+              <div class="col">
+                <small class="float-right text-right">{{calcPercentageAfterOtherBurn()}}% of the total supply</small>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col">
+                <small class="float-left text-left">Your TREEs will burn for</small>
+              </div>
+              <div class="col">
+                <small class="float-right text-right">{{calcReceiveAmountAfterOtherBurn()}} yUSD</small>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col">
+                <small class="float-left text-left">Your TREEs currently burn for</small>
+              </div>
+              <div class="col">
+                <small class="float-right text-right">{{calcReceiveAmountBeforeOtherBurn()}} yUSD</small>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col">
+                <h4 class="float-left text-left">Your returns</h4>
+              </div>
+              <div class="col">
+                <h4 class="float-right text-right">{{calcReturns()}}%</h4>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <small>Note: This calculator assumes the TREEs are burnt at the same time (i.e. by one account using one
+              transaction).</small>
+            <br>
+            <small>If the TREEs are burnt in multiple burns, the returns will be HIGHER. So the returns
+              displayed here is the lower bound.</small>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

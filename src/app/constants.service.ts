@@ -5,6 +5,7 @@ import BigNumber from 'bignumber.js';
   providedIn: 'root'
 })
 export class ConstantsService {
+  TREE_DECIMALS = 18;
   TREE_PRECISION = 1e18;
   TREE_PRECISION_STR = new BigNumber(this.TREE_PRECISION).toFixed();
   YUSD_PRECISION = 1e18;
