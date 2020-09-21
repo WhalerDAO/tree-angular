@@ -2,7 +2,7 @@
   <div class="row mb-3">
     <div class="col">
       <div class="row justify-content-center">
-        <h1 class="display-1">🌲</h1>
+        <h1 class="display-1">🌳</h1>
       </div>
       <div class="row justify-content-center">
         <h1 class="display-4 main-text">It's a good day to plant TREEs</h1>
@@ -20,10 +20,10 @@
           <h5 class="card-title">Your TREE balance</h5>
           <h1 class="card-text">
             <ng-container *ngIf="wallet.connected">
-              🌲 {{treeBalance.toFormat(4)}}
+              🌳 {{treeBalance.toFormat(4)}}
             </ng-container>
             <ng-container *ngIf="!wallet.connected">
-              🌲 ---.----
+              🌳 ---.----
             </ng-container>
           </h1>
           <hr>
