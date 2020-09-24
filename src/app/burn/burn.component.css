@@ -9,3 +9,7 @@
 .burn-btn:hover {
   background-color: #5a0911;
 }
+
+.text-muted {
+  color: rgb(161, 131, 131) !important;
+}
