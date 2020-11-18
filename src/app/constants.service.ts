@@ -18,45 +18,50 @@ export class ConstantsService {
       emoji: "🦄",
       tokenName: "TREE-yUSD Uniswap LP"
     },
-    yYFI: {
-      name: "yYFI Forest",
+    PAN: {
+      name: "PAN Forest",
       emoji: "🎄",
-      tokenName: "yYFI yEarn vault"
+      tokenName: "Panvala"
     },
-    yDAI: {
-      name: "yDAI Undergrowth",
+    UNI: {
+      name: "UNI Undergrowth",
       emoji: "🥦",
-      tokenName: "yDAI yEarn vault"
+      tokenName: "Uniswap"
     },
-    yWETH: {
-      name: "yWETH Weald",
+    YFI: {
+      name: "YFI Weald",
       emoji: "🌸",
-      tokenName: "yWETH yEarn vault"
+      tokenName: "yearn"
     },
-    yaLINK: {
-      name: "yaLINK Jungle",
+    COMP: {
+      name: "COMP Jungle",
       emoji: "🐸",
-      tokenName: "yaLINK yEarn vault"
+      tokenName: "Compound"
     },
-    SNX: {
-      name: "SNX Grove",
+    WETH: {
+      name: "WETH Grove",
       emoji: "🐍",
-      tokenName: "Synthetix"
+      tokenName: "Wrapped ETH"
     },
-    LEND: {
-      name: "LEND Woodland",
+    AAVE: {
+      name: "AAVE Woodland",
       emoji: "🌳",
-      tokenName: "Aave LEND"
+      tokenName: "Aave"
     },
     ANT: {
       name: "ANT Arboretum",
       emoji: "🐜",
       tokenName: "Aragon ANT"
     },
-    COMP: {
-      name: "COMP Courtyard",
+    BAL: {
+      name: "BAL Courtyard",
       emoji: "🍄",
-      tokenName: "Compound COMP"
+      tokenName: "Balancer"
+    },
+    STAKE: {
+      name: "STAKE Sylva",
+      emoji: "🌿",
+      tokenName: "XDAI STAKE"
     }
   };
 

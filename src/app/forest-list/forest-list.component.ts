@@ -9,19 +9,22 @@ import { ConstantsService } from '../constants.service';
 export class ForestListComponent implements OnInit {
   FORESTS = [
     [
-      "LP",
-      "yYFI",
-      "yDAI"
+      "LP"
     ],
     [
-      "yWETH",
-      "yaLINK",
-      "SNX"
+      "PAN",
+      "UNI",
+      "YFI"
     ],
     [
-      "LEND",
+      "COMP",
+      "WETH",
+      "AAVE"
+    ],
+    [
       "ANT",
-      "COMP"
+      "BAL",
+      "STAKE"
     ]
   ];
 
