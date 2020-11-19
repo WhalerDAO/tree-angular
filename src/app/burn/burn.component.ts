@@ -41,7 +41,7 @@ export class BurnComponent implements OnInit {
 
     this.treeBalance = new BigNumber(await tree.methods.balanceOf(this.wallet.userAddress).call()).div(this.constants.TREE_PRECISION);
     this.treeSupply = new BigNumber(await tree.methods.totalSupply().call()).div(this.constants.TREE_PRECISION);
-    this.reserveBalance = new BigNumber(await reserveToken.methods.balanceOf(treeReserve.options.address).call()).div(this.constants.YUSD_PRECISION);
+    this.reserveBalance = new BigNumber(await reserveToken.methods.balanceOf(treeReserve.options.address).call()).div(this.constants.DAI_PRECISION);
   }
 
   resetData() {

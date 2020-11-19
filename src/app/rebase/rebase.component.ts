@@ -39,7 +39,7 @@ export class RebaseComponent implements OnInit, OnDestroy {
   }
 
   async loadData() {
-    this.oracleTREEPrice = new BigNumber(await this.contract.ITREEOracle.methods.updateAndConsult(this.contract.TREE.options.address, this.constants.TREE_PRECISION_STR).call()).div(this.constants.YUSD_PRECISION);
+    this.oracleTREEPrice = new BigNumber(await this.contract.ITREEOracle.methods.updateAndConsult(this.contract.TREE.options.address, this.constants.TREE_PRECISION_STR).call()).div(this.constants.DAI_PRECISION);
     this.lastRebaseTimestamp = +(await this.contract.TREERebaser.methods.lastRebaseTimestamp().call());
     this.lastRebaseTimer = new Timer(this.lastRebaseTimestamp);
     this.lastRebaseTimer.start();

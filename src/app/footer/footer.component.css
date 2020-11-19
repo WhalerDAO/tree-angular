@@ -5,4 +5,8 @@
   padding: .5rem 1rem;
   border-radius: .3rem;
   font-weight: bold;
+  font-size: 1.2rem;
+}
+.nav-link:hover {
+  color: #5db671 !important;
 }

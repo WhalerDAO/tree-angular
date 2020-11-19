@@ -49,13 +49,13 @@
               ❌
             </ng-container>
             <ng-container *ngIf="wallet.connected && oracleTREEPrice.gt(0)">
-              {{oracleTREEPrice.toFormat(4)}} yUSD
+              {{oracleTREEPrice.toFormat(4)}} DAI
             </ng-container>
             <ng-container *ngIf="!(wallet.connected && oracleTREEPrice.gt(0))">
-              -.---- yUSD
+              -.---- DAI
             </ng-container>
           </h1>
-          <small>>= {{constants.REBASE_THRESHOLD}} yUSD required</small>
+          <small>>= {{constants.REBASE_THRESHOLD}} DAI required</small>
           <br>
           <small>Next update in: {{nextOracleUpdateTimer.hours}}:{{nextOracleUpdateTimer.minutes}}:{{nextOracleUpdateTimer.seconds}}</small>
         </div>
