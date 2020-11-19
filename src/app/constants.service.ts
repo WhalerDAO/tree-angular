@@ -14,9 +14,9 @@ export class ConstantsService {
   ORACLE_UPDATE_INTERVAL = 12; // 12 hours
   FORESTS = {
     LP: {
-      name: "TREE-yUSD LP Garden",
+      name: "TREE-DAI LP Garden",
       emoji: "🦄",
-      tokenName: "TREE-yUSD Uniswap LP"
+      tokenName: "TREE-DAI Uniswap LP"
     },
     PAN: {
       name: "PAN Forest",
