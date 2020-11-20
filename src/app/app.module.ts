@@ -12,6 +12,8 @@ import { ForestListComponent } from './forest-list/forest-list.component';
 import { ForestComponent } from './forest/forest.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FooterComponent } from './footer/footer.component';
+import { OldForestsComponent } from './old-forests/old-forests.component';
+import { OldForestListComponent } from './old-forest-list/old-forest-list.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { FooterComponent } from './footer/footer.component';
     HeaderComponent,
     ForestListComponent,
     ForestComponent,
-    FooterComponent
+    FooterComponent,
+    OldForestsComponent,
+    OldForestListComponent
   ],
   imports: [
     BrowserModule,

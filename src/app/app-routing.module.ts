@@ -5,6 +5,8 @@ import { BurnComponent } from './burn/burn.component';
 import { RebaseComponent } from './rebase/rebase.component';
 import { ForestListComponent } from './forest-list/forest-list.component';
 import { ForestComponent } from './forest/forest.component';
+import { OldForestsComponent } from './old-forests/old-forests.component';
+import { OldForestListComponent } from './old-forest-list/old-forest-list.component';
 
 const routes: Routes = [
   {
@@ -18,6 +20,11 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'old-forests',
+    component: OldForestListComponent,
+    pathMatch: 'full'
+  },
+  {
     path: 'forests/:id',
     component: ForestComponent
   },
@@ -28,6 +35,10 @@ const routes: Routes = [
   {
     path: 'rebase',
     component: RebaseComponent
+  },
+  {
+    path: 'old-forests/:id',
+    component: OldForestsComponent
   }
 ];
 

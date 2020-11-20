@@ -30,6 +30,12 @@ export class ContractService {
     return new this.wallet.web3.eth.Contract(abi, address);
   }
 
+  getOldForest(forestID: string) {
+    const abi = require(`../assets/abi/TREERewards.json`);
+    const address = this.getOldForestAddress(forestID);
+    return new this.wallet.web3.eth.Contract(abi, address);
+  }
+
   getForestAddress(forestID: string) {
     const address = require('../assets/addresses.json').forests[forestID];
     return address;
@@ -39,6 +45,11 @@ export class ContractService {
     const abi = require(`../assets/abi/ERC20.json`);
     const address = require('../assets/addresses.json')[forestID];
     return new this.wallet.web3.eth.Contract(abi, address);
+  }
+
+  getOldForestAddress(forestID: string) {
+    const address = require('../assets/addresses.json').oldForests[forestID];
+    return address;
   }
 
   getNamedContract(name: string) {
