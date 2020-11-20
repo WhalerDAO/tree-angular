@@ -16,7 +16,7 @@ export class Web3Enabled {
 
   constructor(public web3: Web3) {
     this.assistInstance = null;
-    this.blocknativeAPIKey = '08eaf62d-228c-4ec6-a033-f8b97689102b';
+    this.blocknativeAPIKey = '239ccd50-62da-4e2f-aaf4-b33d39a3a0a6';
     this.infuraKey = '9e5f0d08ad19483193cc86092b7512f2';
     this.portisAPIKey = 'a838dbd2-c0b1-4465-8dbe-36b88f3d0d4e';
     this.squarelinkKey = '564b947e352529c618f0';
@@ -205,49 +205,15 @@ export class Web3Enabled {
     }
   }
 
-  async sendTxWithToken(func, token, to, amount, gasLimit, _onTxHash, _onReceipt, _onError) {
+  async sendTxWithToken(func, token, to, amount, _onTxHash, _onReceipt, _onError) {
     const maxAllowance = new BigNumber(2).pow(256).minus(1).integerValue().toFixed();
-    const state = this.state;
-    const allowance = new BigNumber(await token.methods.allowance(state.address, to).call());
-    if (allowance.gt(0)) {
-      if (allowance.gte(amount)) {
-        return this.sendTx(func, _onTxHash, _onReceipt, _onError);
-      }
-
-      return this.sendTx(token.methods.approve(to, 0), () => {
-        this.sendTx(token.methods.approve(to, maxAllowance), () => {
-          func.send({
-            from: this.state.address,
-            gas: gasLimit,
-          }).on('transactionHash', (hash) => {
-            _onTxHash(hash);
-            const { emitter } = this.notifyInstance.hash(hash);
-            emitter.on('txConfirmed', _onReceipt);
-            emitter.on('txFailed', _onError);
-          }).on('error', (e) => {
-            if (!e.toString().contains('newBlockHeaders')) {
-              _onError(e);
-            }
-          });
-        }, this.doNothing, _onError);
-      }, this.doNothing, _onError);
-    } else {
-      return this.sendTx(token.methods.approve(to, maxAllowance), () => {
-        func.send({
-          from: this.state.address,
-          gas: gasLimit,
-        }).on('transactionHash', (hash) => {
-          _onTxHash(hash);
-          const { emitter } = this.notifyInstance.hash(hash);
-          emitter.on('txConfirmed', _onReceipt);
-          emitter.on('txFailed', _onError);
-        }).on('error', (e) => {
-          if (!e.toString().contains('newBlockHeaders')) {
-            _onError(e);
-          }
-        });
-      }, this.doNothing, _onError);
+    const allowance = new BigNumber(await token.methods.allowance(this.state.address, to).call());
+    if (allowance.gte(amount)) {
+      return this.sendTx(func, _onTxHash, _onReceipt, _onError);
     }
+    return this.sendTx(token.methods.approve(to, maxAllowance), this.doNothing, () => {
+      this.sendTx(func, _onTxHash, _onReceipt, _onError);
+    }, _onError);
   }
 
   doNothing() { }

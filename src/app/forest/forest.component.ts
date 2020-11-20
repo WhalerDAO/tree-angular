@@ -74,9 +74,9 @@ export class ForestComponent implements OnInit {
     const forestAddress = this.contract.getForestAddress(this.forestID);
     const stakeToken = this.contract.getForestStakeToken(this.forestID);
     const stakeTokenPrecision = Math.pow(10, +(await stakeToken.methods.decimals().call()));
-    const stakeAmount = new BigNumber(amount).times(stakeTokenPrecision).integerValue().toString();
+    const stakeAmount = new BigNumber(amount).times(stakeTokenPrecision).integerValue().toFixed();
     const func = this.contract.getForest(this.forestID).methods.stake(stakeAmount);
-    this.wallet.sendTxWithToken(func, stakeToken, forestAddress, stakeAmount, 5e5, () => { }, () => {
+    this.wallet.sendTxWithToken(func, stakeToken, forestAddress, stakeAmount, () => { }, () => {
       this.loadData();
     }, () => { });
   }
@@ -91,7 +91,7 @@ export class ForestComponent implements OnInit {
   async withdraw(amount) {
     const stakeToken = this.contract.getForestStakeToken(this.forestID);
     const stakeTokenPrecision = Math.pow(10, +(await stakeToken.methods.decimals().call()));
-    const stakeAmount = new BigNumber(amount).times(stakeTokenPrecision).integerValue().toString();
+    const stakeAmount = new BigNumber(amount).times(stakeTokenPrecision).integerValue().toFixed();
     const func = this.contract.getForest(this.forestID).methods.withdraw(stakeAmount);
     this.wallet.sendTx(func, () => { }, () => {
       this.loadData();
