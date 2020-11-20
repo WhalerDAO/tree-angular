@@ -41,6 +41,7 @@ export class ForestComponent implements OnInit {
     this.earnedTreeBalance = new BigNumber(await forest.methods.earned(this.wallet.userAddress).call()).div(this.constants.TREE_PRECISION);
     const stakeTokenPrecision = Math.pow(10, +(await forestStakeToken.methods.decimals().call()));
     this.stakedTokenBalance = new BigNumber(await forest.methods.balanceOf(this.wallet.userAddress).call()).div(stakeTokenPrecision);
+
     this.availableStakeTokenBalance = new BigNumber(await forestStakeToken.methods.balanceOf(this.wallet.userAddress).call()).div(stakeTokenPrecision);
   }
 

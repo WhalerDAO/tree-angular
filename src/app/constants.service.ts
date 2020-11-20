@@ -15,37 +15,37 @@ export class ConstantsService {
   FORESTS = {
     LP: {
       name: "TREE-DAI LP Garden",
-      emoji: "🦄",
+      emoji: "🌳",
       tokenName: "TREE-DAI Uniswap LP"
     },
     PAN: {
       name: "PAN Forest",
-      emoji: "🎄",
+      emoji: "🍳",
       tokenName: "Panvala"
     },
     UNI: {
       name: "UNI Undergrowth",
-      emoji: "🥦",
+      emoji: "🦄",
       tokenName: "Uniswap"
     },
     YFI: {
       name: "YFI Weald",
-      emoji: "🌸",
+      emoji: "🎍",
       tokenName: "yearn"
     },
     COMP: {
       name: "COMP Jungle",
-      emoji: "🐸",
+      emoji: "🌾",
       tokenName: "Compound"
     },
     WETH: {
       name: "WETH Grove",
-      emoji: "🐍",
+      emoji: "☰",
       tokenName: "Wrapped ETH"
     },
     AAVE: {
       name: "AAVE Woodland",
-      emoji: "🌳",
+      emoji: "👻",
       tokenName: "Aave"
     },
     ANT: {
@@ -60,7 +60,7 @@ export class ConstantsService {
     },
     STAKE: {
       name: "STAKE Sylva",
-      emoji: "🌿",
+      emoji: "🐍",
       tokenName: "XDAI STAKE"
     }
   };
