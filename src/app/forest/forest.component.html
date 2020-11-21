@@ -17,8 +17,8 @@
   <div class="row centered tvl">
     <div class="col">
       <div class="card">
-        <h1 class="card-title">Total TVL: </h1>
-        <h3>{{totalTVL.toFormat(4)}} {{constants.FORESTS[forestID].tokenName}}</h3>
+        <h2>{{totalTVL.toFormat(4)}} {{constants.FORESTS[forestID].tokenName}} staked</h2>
+        <h4 class="tree-remaining">{{poolTreeBalance.toFormat(4)}} TREE remaining</h4>
       </div>
     </div>
   </div>
@@ -30,6 +30,7 @@
           <h1 class="card-title mb-3">🌳</h1>
           <h5 class="card-title">TREE Earned</h5>
           <h1 class="card-text">{{earnedTreeBalance.toFormat(4)}}</h1>
+          <h5 class="card-text">Estimated total yield: {{predictedTreeAmount.toFormat(4)}} TREE</h5>
           <hr>
           <button type="button" class="btn btn-outline-success" (click)="harvest()">Harvest</button>
         </div>
@@ -42,6 +43,7 @@
           <img class="planter mb-3" src='../../assets/farmer.png'>
           <h5 class="card-title">{{constants.FORESTS[forestID].tokenName}} tokens staked</h5>
           <h1 class="card-text">{{stakedTokenBalance.toFormat(4)}}</h1>
+          <h5 class="card-text">Proportion of current pool: {{poolProportion.toFormat(8)}}</h5>
           <hr>
           <button type="button" class="btn btn-outline-success" (click)="openModal(stakeModal)">Stake</button>
           <ng-container *ngIf="stakedTokenBalance.gt(0)">

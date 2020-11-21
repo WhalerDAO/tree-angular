@@ -14,3 +14,7 @@
 .card {
   padding: 1rem 1rem;
 }
+
+.tree-remaining {
+  color:  rgb(108, 188, 204);
+}
