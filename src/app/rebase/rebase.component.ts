@@ -63,7 +63,9 @@ export class RebaseComponent implements OnInit, OnDestroy {
   }
 
   timeSinceLastRebaseReady(): boolean {
-    return false;
+    const HOUR = 60 * 60;
+    const now = Math.floor(Date.now() / 1e3);
+    return ((now-this.lastRebaseTimestamp) > 12 * HOUR);
   }
 
   oraclePriceReady(): boolean {
