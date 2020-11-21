@@ -56,6 +56,7 @@ export class ForestComponent implements OnInit {
     this.stakedTokenBalance = new BigNumber(0);
     this.availableStakeTokenBalance = new BigNumber(0);
     this.totalTVL = new BigNumber(0);
+    this.url = "";
   }
 
   openModal(modal) {
