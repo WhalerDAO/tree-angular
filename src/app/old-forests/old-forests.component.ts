@@ -16,6 +16,7 @@ export class OldForestsComponent implements OnInit {
   earnedTreeBalance: BigNumber;
   stakedTokenBalance: BigNumber;
   availableStakeTokenBalance: BigNumber;
+  totalTVL: BigNumber;
 
   constructor(public wallet: WalletService, public contract: ContractService, public constants: ConstantsService, private activatedRoute: ActivatedRoute, private modalService: NgbModal) {
     this.resetData();
@@ -35,7 +36,7 @@ export class OldForestsComponent implements OnInit {
   }
 
   async loadData() {
-    const forest = this.contract.getForest(this.forestID);
+    const forest = this.contract.getOldForest(this.forestID);
     const forestStakeToken = this.contract.getForestStakeToken(this.forestID);
 
     this.earnedTreeBalance = new BigNumber(await forest.methods.earned(this.wallet.userAddress).call()).div(this.constants.TREE_PRECISION);
@@ -43,12 +44,15 @@ export class OldForestsComponent implements OnInit {
     this.stakedTokenBalance = new BigNumber(await forest.methods.balanceOf(this.wallet.userAddress).call()).div(stakeTokenPrecision);
 
     this.availableStakeTokenBalance = new BigNumber(await forestStakeToken.methods.balanceOf(this.wallet.userAddress).call()).div(stakeTokenPrecision);
+
+    this.totalTVL = new BigNumber(await this.contract.getForestStakeToken(this.forestID).methods.balanceOf(this.contract.getOldForestAddress(this.forestID)).call()).div(stakeTokenPrecision);
   }
 
   resetData() {
     this.earnedTreeBalance = new BigNumber(0);
     this.stakedTokenBalance = new BigNumber(0);
     this.availableStakeTokenBalance = new BigNumber(0);
+    this.totalTVL = new BigNumber(0);
   }
 
   openModal(modal) {
@@ -75,7 +79,7 @@ export class OldForestsComponent implements OnInit {
     const stakeToken = this.contract.getForestStakeToken(this.forestID);
     const stakeTokenPrecision = Math.pow(10, +(await stakeToken.methods.decimals().call()));
     const stakeAmount = new BigNumber(amount).times(stakeTokenPrecision).integerValue().toFixed();
-    const func = this.contract.getForest(this.forestID).methods.stake(stakeAmount);
+    const func = this.contract.getOldForest(this.forestID).methods.stake(stakeAmount);
     this.wallet.sendTxWithToken(func, stakeToken, forestAddress, stakeAmount, () => { }, () => {
       this.loadData();
     }, () => { });

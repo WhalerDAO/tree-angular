@@ -6,10 +6,19 @@
         <h1 class="display-1">{{constants.FORESTS[forestID].emoji}}</h1>
       </div>
       <div class="row justify-content-center">
-        <h1 class="display-4 main-text">{{constants.FORESTS[forestID].name}}</h1>
+        <a href={{url}}><h1 class="display-4 main-text">{{constants.FORESTS[forestID].name}}</h1></a>
       </div>
       <div class="row justify-content-center">
         <h2 class="text-muted">Stake {{constants.FORESTS[forestID].tokenName}} tokens, earn TREE</h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="row centered tvl">
+    <div class="col">
+      <div class="card">
+        <h1 class="card-title">Total TVL: </h1>
+        <h3>{{totalTVL.toFormat(4)}} {{constants.FORESTS[forestID].tokenName}}</h3>
       </div>
     </div>
   </div>

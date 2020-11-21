@@ -16,6 +16,8 @@ export class ForestComponent implements OnInit {
   earnedTreeBalance: BigNumber;
   stakedTokenBalance: BigNumber;
   availableStakeTokenBalance: BigNumber;
+  totalTVL: BigNumber;
+  url: String;
 
   constructor(public wallet: WalletService, public contract: ContractService, public constants: ConstantsService, private activatedRoute: ActivatedRoute, private modalService: NgbModal) {
     this.resetData();
@@ -43,12 +45,17 @@ export class ForestComponent implements OnInit {
     this.stakedTokenBalance = new BigNumber(await forest.methods.balanceOf(this.wallet.userAddress).call()).div(stakeTokenPrecision);
 
     this.availableStakeTokenBalance = new BigNumber(await forestStakeToken.methods.balanceOf(this.wallet.userAddress).call()).div(stakeTokenPrecision);
+
+    this.totalTVL = new BigNumber(await this.contract.getForestStakeToken(this.forestID).methods.balanceOf(this.contract.getForestAddress(this.forestID)).call()).div(stakeTokenPrecision);
+
+    this.url = "https://etherscan.io/address/" + this.contract.getForestAddress(this.forestID);
   }
 
   resetData() {
     this.earnedTreeBalance = new BigNumber(0);
     this.stakedTokenBalance = new BigNumber(0);
     this.availableStakeTokenBalance = new BigNumber(0);
+    this.totalTVL = new BigNumber(0);
   }
 
   openModal(modal) {
