@@ -1,6 +1,6 @@
 import Web3 from 'web3';
 import Onboard from 'bnc-onboard';
-import Notify from 'bnc-notify';
+// import Notify from 'bnc-notify';
 import BigNumber from 'bignumber.js';
 
 export class Web3Enabled {
@@ -10,7 +10,7 @@ export class Web3Enabled {
   squarelinkKey: string;
   fortmaticKey: string;
   assistInstance: any;
-  notifyInstance: any;
+  // notifyInstance: any;
   state: any;
   networkID: number;
 
@@ -148,15 +148,15 @@ export class Web3Enabled {
       onError();
     }
 
-    if (!this.notifyInstance) {
-      this.notifyInstance = Notify({
-        dappId: this.blocknativeAPIKey,
-        networkId: this.networkID
-      });
-      this.notifyInstance.config({
-        darkMode: false
-      });
-    }
+    // if (!this.notifyInstance) {
+    //   this.notifyInstance = Notify({
+    //     dappId: this.blocknativeAPIKey,
+    //     networkId: this.networkID
+    //   });
+    //   this.notifyInstance.config({
+    //     darkMode: false
+    //   });
+    // }
   }
 
   async estimateGas(func, val, _onError) {
@@ -173,10 +173,10 @@ export class Web3Enabled {
         from: this.state.address,
         gas: gasLimit,
       }).on('transactionHash', (hash) => {
-        _onTxHash(hash);
-        const { emitter } = this.notifyInstance.hash(hash);
-        emitter.on('txConfirmed', _onReceipt);
-        emitter.on('txFailed', _onError);
+        // _onTxHash(hash);
+        // const { emitter } = this.notifyInstance.hash(hash);
+        // emitter.on('txConfirmed', _onReceipt);
+        // emitter.on('txFailed', _onError);
       }).on('error', (e) => {
         if (!e.toString().contains('newBlockHeaders')) {
           _onError(e);
@@ -193,10 +193,10 @@ export class Web3Enabled {
         gas: gasLimit,
         value: val
       }).on('transactionHash', (hash) => {
-        _onTxHash(hash);
-        const { emitter } = this.notifyInstance.hash(hash);
-        emitter.on('txConfirmed', _onReceipt);
-        emitter.on('txFailed', _onError);
+        // _onTxHash(hash);
+        // const { emitter } = this.notifyInstance.hash(hash);
+        // emitter.on('txConfirmed', _onReceipt);
+        // emitter.on('txFailed', _onError);
       }).on('error', (e) => {
         if (!e.toString().contains('newBlockHeaders')) {
           _onError(e);

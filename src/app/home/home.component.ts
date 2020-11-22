@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
   treeBalance: BigNumber;
   treeSupply: BigNumber;
   pendingHarvest: BigNumber;
+  reserveBalance: BigNumber;
 
   constructor(public wallet: WalletService, public contract: ContractService, public constants: ConstantsService) {
     this.resetData();
@@ -42,11 +43,16 @@ export class HomeComponent implements OnInit {
       pendingHarvest = pendingHarvest.plus(forestPendingHarvest);
     }));
     this.pendingHarvest = pendingHarvest;
+
+    const reserveToken = this.contract.getNamedToken('reserveToken');
+    const treeReserve = this.contract.TREEReserve;
+    this.reserveBalance = new BigNumber(await reserveToken.methods.balanceOf(treeReserve.options.address).call()).div(this.constants.DAI_PRECISION);
   }
 
   resetData() {
     this.treeBalance = new BigNumber(0);
     this.treeSupply = new BigNumber(0);
     this.pendingHarvest = new BigNumber(0);
+    this.reserveBalance = new BigNumber(0);
   }
 }
