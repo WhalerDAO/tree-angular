@@ -45,7 +45,7 @@
           <h1 class="card-text">{{stakedTokenBalance.toFormat(4)}}</h1>
           <h5 class="card-text">Proportion of current pool: {{poolProportion.toFormat(8)}}</h5>
           <hr>
-          <button type="button" class="btn btn-outline-success" (click)="openModal(stakeModal)">Stake</button>
+          <button type="button" class="btn btn-outline-success" (click)="openModal(stakeModal)" *ngIf="forestID === 'LP'">Stake</button>
           <ng-container *ngIf="stakedTokenBalance.gt(0)">
             <button type="button" class="btn btn-outline-success ml-3"
               (click)="openModal(withdrawModal)">Withdraw</button>

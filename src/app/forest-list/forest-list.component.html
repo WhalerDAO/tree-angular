@@ -1,7 +1,8 @@
 <div class="container mt-5 text-center justify-content-center">
 
   <div class="alert alert-primary">
-    If you were previously staking in v1, please withdraw your stake by going <a routerLink="/old-forests">here</a> and restake!
+    If you were previously staking in v1, please withdraw your stake by going <a routerLink="/old-forests">here</a> and
+    restake!
   </div>
 
   <div class="row mb-3">
@@ -25,7 +26,14 @@
           <div class="card h-100">
             <div class="card-body">
               <h1 class="card-title">{{constants.FORESTS[forestID].emoji}}</h1>
-              <h5 class="card-title">{{constants.FORESTS[forestID].name}} <span class="badge badge-success" *ngIf="forestID === 'LP'">3x rewards</span></h5>
+              <h5 class="card-title">{{constants.FORESTS[forestID].name}}
+                <span class="badge badge-success" *ngIf="forestID === 'LP'">
+                  3x rewards
+                </span>
+                <span class="badge badge-danger" *ngIf="forestID !== 'LP'">
+                  Ended
+                </span>
+              </h5>
               <hr>
               <button type="button" class="btn btn-outline-success" routerLink="{{forestID}}">Enter</button>
             </div>
